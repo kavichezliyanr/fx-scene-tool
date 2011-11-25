@@ -1,5 +1,7 @@
 package org.fxsct;
 
+import java.util.List;
+
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
@@ -75,10 +77,28 @@ public class NodeBrowser {
     public ObjectProperty<Window> subjectStageProperty() {
     	return subjectStage;
     }
+    
+    private TreeItem<Node> findChild(TreeItem<Node> parent, Node node) {
+    	for (TreeItem<Node> c: parent.getChildren())
+    		if (c.getValue() == node)
+    			return c;
+    	return null;
+    }
 
 	public void scrollTo(Node node) {
-		// TODO Auto-generated method stub
-		
+		if (node == null)
+			return;
+		List<Node> elements = NodeInfo.getBreadCrumbElements(node);
+		TreeItem<Node> currentItem = nodeTree.getRoot();
+		if (elements.get(0) != currentItem.getValue())
+			return;
+		for (int i = 1; i < elements.size(); i++) {
+			currentItem = findChild(currentItem, elements.get(i));
+			if (currentItem == null)
+				return;
+		}
+		nodeTree.getSelectionModel().select(currentItem);
+		nodeTree.scrollTo(nodeTree.getSelectionModel().getSelectedIndex());
 	}
 
 }
