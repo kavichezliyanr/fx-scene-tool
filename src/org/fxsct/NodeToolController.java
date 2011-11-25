@@ -51,6 +51,7 @@ public class NodeToolController extends Controller implements Initializable {
     private BoundsPane boundsPane = new BoundsPane();
     private ConstraintsPane constraintsPane = new ConstraintsPane();
     private StyleClassesPane styleClassesPane = new StyleClassesPane();
+    private IdPane idPane = new IdPane();
     private NodeVisualizer locator = new NodeVisualizer(locatorStage);
     private final BooleanProperty trackMouse = new SimpleBooleanProperty(false);
     private final NodeTracker tracker = new NodeTracker(locatorStage){{
@@ -94,6 +95,9 @@ public class NodeToolController extends Controller implements Initializable {
     private Tab stylesTab;
 
     @FXML
+    private Tab idTab;
+
+    @FXML
     private TitledPane propertiesPane;
     
     @FXML
@@ -110,6 +114,8 @@ public class NodeToolController extends Controller implements Initializable {
         sceneGraphTab.setContent(nodeBrowser.getViewNode());
         stylesTab.setContent(styleClassesPane.getContent());
         styleClassesPane.subjectSceneProperty().bind(Bindings.<Scene>select(nodeBrowser.selectedNodeProperty(), "scene"));
+        idTab.setContent(idPane.getContent());
+        idPane.subjectSceneProperty().bind(Bindings.<Scene>select(nodeBrowser.selectedNodeProperty(), "scene"));
         propertiesPane.setContent(propTable.getRootNode());
         pseudoClassContent.getChildren().setAll(pseudoClassPane.getContentNode());
         boundsContent.setContent(boundsPane.getContentNode());
@@ -152,6 +158,14 @@ public class NodeToolController extends Controller implements Initializable {
 			}
 		});
 
+    	idPane.selectedNodeProperty().addListener(new InvalidationListener() {
+			
+			@Override
+			public void invalidated(Observable arg0) {
+				if (idPane.selectedNodeProperty().get() != null)
+					locator.subjectNodeProperty().set(idPane.selectedNodeProperty().get());
+			}
+		});
     }
 
     ObservableList<Stage> getStages() {

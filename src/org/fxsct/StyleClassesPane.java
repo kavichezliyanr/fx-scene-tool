@@ -9,6 +9,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -51,15 +52,15 @@ public class StyleClassesPane {
 				if (nn == null) {
 					nn = new ArrayList<Node>();
 					styleClassMap.put(style, nn);
-					System.out.println("Adding style class: " + style);
 				}
 				nn.add(n);
-				if (n instanceof Parent)
-					nodes.addAll(((Parent)n).getChildrenUnmodifiable());
 			}
+			if (n instanceof Parent)
+				nodes.addAll(((Parent)n).getChildrenUnmodifiable());
 			
 		}
 		lv.getItems().setAll(styleClassMap.keySet());
+		FXCollections.sort(lv.getItems());
 	}
 	
 	

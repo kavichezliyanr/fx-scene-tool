@@ -44,6 +44,6 @@ public class SceneToolSample extends Application {
         
         SceneTool st = new SceneTool(stage);
 //        st.show();
-//        st.debug();
+        st.debug();
     }
 }

@@ -25,6 +25,7 @@ public class SceneTool {
     private final ObservableList<Stage> stages = FXCollections.observableArrayList();
     private Stage toolStage;
     private BooleanProperty trackMouse = new SimpleBooleanProperty(false);
+	private boolean debug;
     
 
     public SceneTool(Stage primaryStage) {
@@ -77,6 +78,9 @@ public class SceneTool {
             toolStage.setX(0);
             toolStage.setY(0);
             toolStage.getScene().getStylesheets().add(getClass().getResource("SceneTool.css").toExternalForm());
+            if (debug) {
+            	SceneTool st = new SceneTool(toolStage);
+            }
         }
         toolStage.show();
     }
@@ -89,7 +93,7 @@ public class SceneTool {
     }
 
     public void debug() {
-        SceneTool st = new SceneTool(toolStage);
-        st.show();
+    	this.debug = true;
+//        st.show();
     }
 }
