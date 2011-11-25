@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Window;
 
 import org.fxsct.locator.LocatorStage;
+import org.fxsct.util.BindingsTrace;
 
 
 public class NodeTracker {
@@ -71,9 +72,7 @@ public class NodeTracker {
 				node.set(n);
 			}
 		});
-		this.locatorStage.getContent().addAll(trackArea);
-		
-		
+		this.locatorStage.getGlassGroup().addAll(trackArea);
 	}
 
 }

@@ -22,6 +22,7 @@ import org.fxsct.util.BindingsTrace;
 public class LocatorStage {
 	
 	private final Group publicGroup = new Group();
+	private final Group glassGroup = new Group();
 	private final ObjectProperty<Window> parentWindow = new SimpleObjectProperty<Window>();
 	private final ObjectProperty<Popup> stage = new SimpleObjectProperty<Popup>();
 	
@@ -46,7 +47,7 @@ public class LocatorStage {
 		if (stage.get() != null)
 			hide();
 		Rectangle2D screenBounds = getScreenBounds();
-		Group privateGroup = new Group(publicGroup);
+		Group privateGroup = new Group(publicGroup, glassGroup);
 		Rectangle clip = new Rectangle(screenBounds.getMinX(), screenBounds.getMinY(), screenBounds.getWidth(), screenBounds.getHeight());
 		privateGroup.setClip(clip);
 		// Add an invisible line that spans diagonally accross the all the available screens
@@ -92,6 +93,10 @@ public class LocatorStage {
 	
 	public ObservableList<Node> getContent() {
 		return publicGroup.getChildren();
+	}
+	
+	public ObservableList<Node> getGlassGroup() {
+		return glassGroup.getChildren();
 	}
 	
 	public ObjectProperty<Window> parentWindowProperty() {

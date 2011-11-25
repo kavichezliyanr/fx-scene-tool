@@ -36,7 +36,7 @@ public class SceneToolSample extends Application {
 
 			@Override
 			public void handle(MouseEvent ev) {
-				System.out.println(String.format("Mouse Moved to %f,%f", ev.getX(), ev.getY() ));
+//				System.out.println(String.format("Mouse Moved to %f,%f", ev.getX(), ev.getY() ));
 				// TODO Auto-generated method stub
 				
 			}
