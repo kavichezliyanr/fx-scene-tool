@@ -45,6 +45,7 @@ public class NodePropertyTable {
             });
             tv.getColumns().addAll(propNameCol, propValueCol);
             tv.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+            tv.setMinHeight(90);
         }
         return tv;
     }

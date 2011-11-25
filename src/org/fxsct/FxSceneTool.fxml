@@ -5,15 +5,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane id="main" prefHeight="680" prefWidth="280" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxsct.FxSceneToolController">
+<VBox id="main" fx:id="root" prefHeight="680" prefWidth="280" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxsct.FxSceneToolController">
+<!--
     <children>
         <TabPane>
             <tabs>
                 <Tab fx:id="nodeToolTab" text="Scene Tools" closable="false" />
-                <!-- <Tab fx:id="styleToolTab" text="Style Tools" /> -->
+                <Tab fx:id="styleToolTab" text="Style Tools" />
             </tabs>
         </TabPane>
     </children>
-</StackPane>
+-->
+</VBox>
 
 

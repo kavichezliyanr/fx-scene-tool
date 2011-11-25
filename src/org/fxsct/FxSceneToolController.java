@@ -12,11 +12,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import org.fxsct.locator.LocatorStage;
 
 /**
  *
@@ -26,10 +23,12 @@ public class FxSceneToolController extends Controller implements Initializable {
 
     NodeToolController nodeTool;
     
-    @FXML
-    private Tab nodeToolTab;
-    @FXML
-    private Tab stylesheetTab;
+    @FXML private VBox root;
+    
+//    @FXML
+//    private Tab nodeToolTab;
+//    @FXML
+//    private Tab stylesheetTab;
     
 	private final BooleanProperty trackMouse = new SimpleBooleanProperty(false);
     
@@ -37,7 +36,7 @@ public class FxSceneToolController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         nodeTool = SceneToolFactory.createNodeToolController();
         nodeTool.trackMouseProperty().bind(trackMouse);
-        nodeToolTab.setContent(nodeTool.getView());
+        root.getChildren().setAll(nodeTool.getView());
     }
 
     ObservableList<Stage> getStages() {
