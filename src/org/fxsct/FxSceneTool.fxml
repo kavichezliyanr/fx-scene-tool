@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane id="main" prefHeight="680" prefWidth="280" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxsct.FxSceneToolController">
+    <children>
+        <TabPane>
+            <tabs>
+                <Tab fx:id="nodeToolTab" text="Scene Tools" closable="false" />
+                <!-- <Tab fx:id="styleToolTab" text="Style Tools" /> -->
+            </tabs>
+        </TabPane>
+    </children>
+</StackPane>
+
+
