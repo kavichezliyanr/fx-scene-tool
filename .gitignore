@@ -3,3 +3,7 @@
 /.classpath
 /.project
 /target
+
+/.settings
+/fxsct-plugin/.settings
+/fxsct-rt/.settings
