@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 package org.fxsct;
 
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -15,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import org.fxsct.FxSceneToolController;
+import org.fxsct.SceneToolFactory;
 
 /**
  *
