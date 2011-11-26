@@ -59,7 +59,6 @@ public class LocatorStage {
 		stage.set(new Popup());
 		stage.get().getContent().setAll(privateGroup);
 		stage.get().show(parentWindow.get(), screenBounds.getMinX(), screenBounds.getMinY());
-		BindingsTrace.change("LocatorStage.focussed", stage.get().focusedProperty(), System.out);
 	}
 	
 	private void hide() {
