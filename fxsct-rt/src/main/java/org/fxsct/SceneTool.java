@@ -10,9 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
-import org.fxsct.FxSceneToolController;
-import org.fxsct.SceneToolFactory;
+import javafx.stage.Window;
 
 /**
  *
@@ -20,13 +18,13 @@ import org.fxsct.SceneToolFactory;
  */
 public class SceneTool {
 
-    private final ObservableList<Stage> stages = FXCollections.observableArrayList();
+    private final ObservableList<Window> stages = FXCollections.observableArrayList();
     private Stage toolStage;
     private BooleanProperty trackMouse = new SimpleBooleanProperty(false);
 	private boolean debug;
     
 
-    public SceneTool(Stage primaryStage) {
+    public SceneTool(Window primaryStage) {
         stages.add(primaryStage);
         stages.get(0).addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 

@@ -38,7 +38,7 @@ import org.fxsct.locator.NodeVisualizer;
  */
 public class NodeToolController extends Controller implements Initializable {
 
-    private final ObservableList<Stage> stages = FXCollections.observableArrayList();
+    private final ObservableList<Window> stages = FXCollections.observableArrayList();
     private final NodeBrowser nodeBrowser = new NodeBrowser();
     private final ObjectProperty<Window> subjectWindow = new SimpleObjectProperty<Window>();
     private final ObjectProperty<Window> toolWindow = new SimpleObjectProperty<Window>();
@@ -168,7 +168,7 @@ public class NodeToolController extends Controller implements Initializable {
 		});
     }
 
-    ObservableList<Stage> getStages() {
+    ObservableList<Window> getStages() {
         return stages;
     }
 

@@ -6,13 +6,18 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
-  <artifactId>fxsct-rt</artifactId>
-  <name>Fx Scene Tool Runtime</name>
+  <artifactId>fxsct-example</artifactId>
   <dependencies>
   	<dependency>
   		<groupId>org.fxsct</groupId>
   		<artifactId>fxsct-plugin</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.fxsct</groupId>
+  		<artifactId>fxsct-rt</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<scope>runtime</scope>
   	</dependency>
   </dependencies>
 </project>

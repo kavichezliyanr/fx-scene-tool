@@ -34,5 +34,6 @@
 	<modules>
 		<module>fxsct-plugin</module>
 		<module>fxsct-rt</module>
+		<module>fxsct-example</module>
 	</modules>
 </project>

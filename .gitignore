@@ -1,9 +1,4 @@
-/bin
-/.settings
-/.classpath
-/.project
-/target
-
-/.settings
-/fxsct-plugin/.settings
-/fxsct-rt/.settings
+.settings
+.classpath
+.project
+target

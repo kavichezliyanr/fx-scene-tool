@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  *
@@ -39,7 +39,7 @@ public class FxSceneToolController extends Controller implements Initializable {
         root.getChildren().setAll(nodeTool.getView());
     }
 
-    ObservableList<Stage> getStages() {
+    ObservableList<Window> getStages() {
         return nodeTool.getStages();
     }
 

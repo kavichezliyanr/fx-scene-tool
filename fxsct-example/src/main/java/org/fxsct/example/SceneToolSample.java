@@ -9,11 +9,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.Mnemonic;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import org.fxsct.SceneTool;
+import org.fxsct.SceneToolPlugin;
 
 /**
  *
@@ -42,8 +41,6 @@ public class SceneToolSample extends Application {
 			}
 		});
         
-        SceneTool st = new SceneTool(stage);
-//        st.show();
-        st.debug();
+        SceneToolPlugin.load(stage);
     }
 }
