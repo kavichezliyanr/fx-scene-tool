@@ -30,12 +30,9 @@ public class FxSceneToolController extends Controller implements Initializable {
 //    @FXML
 //    private Tab stylesheetTab;
     
-	private final BooleanProperty trackMouse = new SimpleBooleanProperty(false);
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nodeTool = SceneToolFactory.createNodeToolController();
-        nodeTool.trackMouseProperty().bind(trackMouse);
         root.getChildren().setAll(nodeTool.getView());
     }
 
@@ -43,7 +40,4 @@ public class FxSceneToolController extends Controller implements Initializable {
         return nodeTool.getStages();
     }
 
-	public BooleanProperty trackMouseProperty() {
-		return trackMouse ;
-	}
 }

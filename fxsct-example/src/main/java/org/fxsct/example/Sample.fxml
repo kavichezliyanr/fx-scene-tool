@@ -14,7 +14,7 @@
                 <HBox spacing="10" layoutX="80" layoutY="40">
             
                     <children>
-                        <Label fx:id="label2" text="Label2" />
+                        <TextField fx:id="label2" text="Label2" />
                         <Label fx:id="label3" text="Label3" translateY="-10"/>
                         <Label fx:id="label4" text="Label4" />
                         <VBox spacing="10" scaleX="2.0" scaleY="2.0">
@@ -32,6 +32,6 @@
                 </Label>
             </children>
         </AnchorPane>
-     	<Label fx:id="bottomLabel" text="bottomLabel" />
+     	<TextField fx:id="bottomLabel" text="bottomLabel" />
     </children>
 </VBox>

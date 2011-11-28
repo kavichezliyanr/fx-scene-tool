@@ -18,6 +18,12 @@
                     </tabs>
                 </TabPane>
                 <StackPane fx:id="pseudoClassContent" />
+                <HBox>
+                	<children>
+                		<ToggleButton fx:id="mouseTrackButton" text="Track Mouse"/>
+                		<ToggleButton fx:id="focusTrackButton" text="Track Focus"/>
+                	</children>
+                </HBox>
                 <TitledPane fx:id="boundsContent" text="Bounds" />
                 <TitledPane fx:id="constraintsContent" text="Constraints" />
                 <TitledPane fx:id="propertiesPane" text="Properties"/>

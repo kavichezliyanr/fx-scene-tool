@@ -59,6 +59,7 @@ public class LocatorStage {
 		stage.set(new Popup());
 		stage.get().getContent().setAll(privateGroup);
 		stage.get().show(parentWindow.get(), screenBounds.getMinX(), screenBounds.getMinY());
+		stage.get().setHideOnEscape(false);
 	}
 	
 	private void hide() {

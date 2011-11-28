@@ -20,7 +20,6 @@ public class SceneTool {
 
     private final ObservableList<Window> stages = FXCollections.observableArrayList();
     private Stage toolStage;
-    private BooleanProperty trackMouse = new SimpleBooleanProperty(false);
 	private boolean debug;
     
 
@@ -35,23 +34,10 @@ public class SceneTool {
 						show();
 					else 
 						hide();
-				} else if (ev.getCode() == KeyCode.DIGIT1 && ev.isControlDown() && ev.isShiftDown() && !trackMouse.get()) {
-					trackMouse.set(true);
-					System.out.println("Start mouse tracking...");
-				}
+				} 
 			}
 		});
-        stages.get(0).addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent ev) {
-				if(ev.getCode() == KeyCode.DIGIT1 && ev.isControlDown() && ev.isShiftDown()) {
-					trackMouse.set(false);
-					System.out.println("Stop mouse tracking...");
-				}
-			}
-		});
-    }
+     }
 
     public void addStage(Stage s) {
         stages.add(s);
@@ -67,7 +53,6 @@ public class SceneTool {
             toolStage.initOwner(stages.get(0));
             final FxSceneToolController controller = SceneToolFactory.createSceneToolController();
             Parent root = (Parent) controller.getView();
-            controller.trackMouseProperty().bind(trackMouse);
             controller.getStages().setAll(stages);
             toolStage.setScene(new Scene(root));
             toolStage.setTitle("FX Scene Tool");

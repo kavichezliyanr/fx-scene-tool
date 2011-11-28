@@ -4,7 +4,8 @@
  */
 package org.fxsct;
 
-import static javafx.beans.binding.Bindings.*;
+import static javafx.beans.binding.Bindings.when;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,8 +26,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import org.fxsct.locator.LocatorStage;
@@ -53,9 +54,12 @@ public class NodeToolController extends Controller implements Initializable {
     private StyleClassesPane styleClassesPane = new StyleClassesPane();
     private IdPane idPane = new IdPane();
     private NodeVisualizer locator = new NodeVisualizer(locatorStage);
-    private final BooleanProperty trackMouse = new SimpleBooleanProperty(false);
     private final NodeTracker tracker = new NodeTracker(locatorStage){{
-    	subjectStageProperty().bind(when(trackMouse).then(subjectWindow).otherwise((Window)null));
+    	subjectStageProperty().bind(subjectWindow);
+    }};
+
+    private final FocusTracker focusTracker = new FocusTracker(){{
+    	subjectSceneProperty().bind(Bindings.<Scene>select(subjectWindow, "scene"));
     }};
 
     private final InvalidationListener focusListener = new InvalidationListener() {
@@ -109,6 +113,12 @@ public class NodeToolController extends Controller implements Initializable {
     @FXML
     private TitledPane constraintsContent;
     
+    @FXML
+    private ToggleButton mouseTrackButton;
+    
+    @FXML
+    private ToggleButton focusTrackButton;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         sceneGraphTab.setContent(nodeBrowser.getViewNode());
@@ -157,6 +167,16 @@ public class NodeToolController extends Controller implements Initializable {
 					nodeBrowser.scrollTo(tracker.nodeProperty().get());
 			}
 		});
+    	
+    	focusTracker.focusedNodeProperty().addListener(new InvalidationListener() {
+			
+			@Override
+			public void invalidated(Observable paramObservable) {
+				System.out.println("NodeToolController.focusTracker Focus changed ---->>>");
+				if (focusTracker.focusedNodeProperty().get() != null)
+					nodeBrowser.scrollTo(focusTracker.focusedNodeProperty().get());
+			}
+		});
 
     	idPane.selectedNodeProperty().addListener(new InvalidationListener() {
 			
@@ -166,13 +186,14 @@ public class NodeToolController extends Controller implements Initializable {
 					locator.subjectNodeProperty().set(idPane.selectedNodeProperty().get());
 			}
 		});
+    	
+    	tracker.trackMouseProperty().bindBidirectional(mouseTrackButton.selectedProperty());
+    	focusTracker.trackFocusProperty().bind(focusTrackButton.selectedProperty());
+    	
     }
 
     ObservableList<Window> getStages() {
         return stages;
     }
 
-	public BooleanProperty trackMouseProperty() {
-		return trackMouse;
-	}
 }
