@@ -57,19 +57,19 @@ public class FocusTracker {
 		
 		if (subjectScene.get() == null || !trackFocus.get()) 
 			return;
-		System.out.println("FocusTracker.focusListener: 1--------------");
+//		System.out.println("FocusTracker.focusListener: 1--------------");
 		Scene s = subjectScene.get();
 		if (s != null) {
-			System.out.println("FocusTracker.focusListener: 2--------------");
+//			System.out.println("FocusTracker.focusListener: 2--------------");
 			Node n = findFocused(s.getRoot());
 			try {
 				focusedNode.set(n);
 			} catch (Throwable t) {
-				System.out.println("FocusTracker.focusListener: 3--------------");
+//				System.out.println("FocusTracker.focusListener: 3--------------");
 				
 			}
 			if (n != null) {
-				System.out.println("FocusTracker.focusListener: 4--------------");
+//				System.out.println("FocusTracker.focusListener: 4--------------");
 				n.focusedProperty().addListener(focusListener);
 			} else {
 				focusCheckTimer.playFromStart();
@@ -81,7 +81,7 @@ public class FocusTracker {
 
 		@Override
 		public void invalidated(Observable arg0) {
-			System.out.println("FocusTracker.focusListener: Invalidated");
+//			System.out.println("FocusTracker.focusListener: Invalidated");
 			setFocusedNode();
 		}
 		

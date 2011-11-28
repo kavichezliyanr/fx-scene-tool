@@ -172,7 +172,7 @@ public class NodeToolController extends Controller implements Initializable {
 			
 			@Override
 			public void invalidated(Observable paramObservable) {
-				System.out.println("NodeToolController.focusTracker Focus changed ---->>>");
+//				System.out.println("NodeToolController.focusTracker Focus changed ---->>>");
 				if (focusTracker.focusedNodeProperty().get() != null)
 					nodeBrowser.scrollTo(focusTracker.focusedNodeProperty().get());
 			}
