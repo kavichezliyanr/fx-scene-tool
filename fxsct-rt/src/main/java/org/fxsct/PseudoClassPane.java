@@ -60,15 +60,13 @@ public class PseudoClassPane {
         flow.getStyleClass().add("fxct-pseudoclass-flow");
         ArrayList<Node> nodes = new ArrayList<Node>();
         for (Pair<String, String> pair: pseudoClasses) {
-        	try {
-	            BooleanExpression prop = NodeInfo.getProperty(n, pair.getValue());
-	            if (prop != null) {
-	                Label l = new Label(":" + pair.getKey());
-	                l.getStyleClass().add("fxsct-pseudoclass-label");
-	                l.disableProperty().bind(prop.not());
-	                nodes.add(l);
-	            }
-        	} catch (ClassCastException ex) {}
+            BooleanExpression prop = NodeInfo.getProperty(n, pair.getValue());
+            if (prop != null) {
+                Label l = new Label(":" + pair.getKey());
+                l.getStyleClass().add("fxsct-pseudoclass-label");
+                l.disableProperty().bind(prop.not());
+                nodes.add(l);
+            }
         }
         return nodes;
     }

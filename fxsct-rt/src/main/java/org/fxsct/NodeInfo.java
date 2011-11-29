@@ -236,11 +236,8 @@ class NodeInfo {
                 
                 try {
                     Object o = m.invoke(n);
-                    if (o instanceof ObservableValue){
-                    	ObservableValue<?> obsVal = (ObservableValue<?>)o;
-                    	if (!(obsVal.getValue() instanceof Node && !blacklistProperties.contains(prop))) {
-                            props.put(prop, (ObservableValue<?>)o);
-                    	}
+                    if (o instanceof ObservableValue && !blacklistProperties.contains(prop)) {
+                        props.put(prop, (ObservableValue<?>)o);
                     }
                 } catch (Throwable t) {
 //                    Logger.getLogger(NodeInfo.class.getName()).log(Level.SEVERE, null, ex);
