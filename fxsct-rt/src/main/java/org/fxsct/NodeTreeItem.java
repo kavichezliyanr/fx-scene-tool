@@ -90,12 +90,16 @@ class NodeTreeItem extends TreeItem<Node> {
 				} else if (change.getAddedSize() < change.getRemovedSize()) {
 					int startIndex = change.getFrom() + replaceSize;
 					int removeSize = change.getRemovedSize() - replaceSize;
-					List<TreeItem<Node>> removedItems = children.subList(
-							startIndex, startIndex + removeSize);
-					for (TreeItem<Node> item : removedItems) {
-						((NodeTreeItem) item).dispose();
+					try {
+						List<TreeItem<Node>> removedItems = children.subList(
+								startIndex, startIndex + removeSize);
+						for (TreeItem<Node> item : removedItems) {
+							((NodeTreeItem) item).dispose();
+						}
+						children.removeAll(removedItems);
+					} catch (IndexOutOfBoundsException ex) {
+						System.out.println(String.format("NodeTreeItem Error: Tried to remove children from %d to %d but the list only had %d items", startIndex, removeSize, children.size()));
 					}
-					children.removeAll(removedItems);
 				}
 			}
 		}
