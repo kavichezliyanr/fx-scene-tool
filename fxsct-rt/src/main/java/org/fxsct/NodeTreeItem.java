@@ -28,13 +28,14 @@ class NodeTreeItem extends TreeItem<Node> {
 		super(node);
 
 //		setExpanded(false);
-		// expandedProperty().addListener(new InvalidationListener() {
-		//
-		// public void invalidated(Observable o) {
-		// if (isExpanded() && getParent() != null && !hasInitializedChildren)
-		// initChildren();
-		// }
-		// });
+		 expandedProperty().addListener(new InvalidationListener() {
+		
+			 public void invalidated(Observable o) {
+				 if (!isExpanded()) 
+					 disposeChildren();
+			 
+			 }
+		 });
 	}
 
 	@Override
@@ -47,7 +48,7 @@ class NodeTreeItem extends TreeItem<Node> {
 
 	@Override
 	public boolean isLeaf() {
-		return !(getValue() instanceof Parent);
+		return !(getValue() instanceof Parent) || ((Parent)getValue()).getChildrenUnmodifiable().isEmpty();
 	}
 
 	private List<TreeItem<Node>> buildChildren() {
@@ -112,6 +113,15 @@ class NodeTreeItem extends TreeItem<Node> {
 			super.getChildren().setAll(buildChildren());
 			me.getChildrenUnmodifiable().addListener(nodeChangeListener);
 		}
+	}
+	
+	private void disposeChildren() {
+		if (getValue() instanceof Parent) {
+			Parent me = (Parent) getValue();
+			me.getChildrenUnmodifiable().removeListener(nodeChangeListener);
+			super.getChildren().clear();
+		}
+		hasInitializedChildren = false;
 	}
 
 	private void dispose() {

@@ -2,8 +2,10 @@ package org.fxsct;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -60,19 +62,26 @@ public class FocusTracker {
 //		System.out.println("FocusTracker.focusListener: 1--------------");
 		Scene s = subjectScene.get();
 		if (s != null) {
-//			System.out.println("FocusTracker.focusListener: 2--------------");
+			if (!s.getWindow().isFocused()) {
+				focusCheckTimer.playFromStart();
+				return;
+			}
 			Node n = findFocused(s.getRoot());
 			try {
 				focusedNode.set(n);
 			} catch (Throwable t) {
-//				System.out.println("FocusTracker.focusListener: 3--------------");
 				
 			}
 			if (n != null) {
-//				System.out.println("FocusTracker.focusListener: 4--------------");
 				n.focusedProperty().addListener(focusListener);
 			} else {
-				focusCheckTimer.playFromStart();
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						setFocusedNode();
+					}
+				});
 			}
 		}
 	}
@@ -81,7 +90,6 @@ public class FocusTracker {
 
 		@Override
 		public void invalidated(Observable arg0) {
-//			System.out.println("FocusTracker.focusListener: Invalidated");
 			setFocusedNode();
 		}
 		
@@ -92,7 +100,7 @@ public class FocusTracker {
 	FocusTracker() {
 		trackFocus.addListener(focusListener);
 		subjectScene.addListener(focusListener);
-//		BindingsTrace.change("FocusTracker.subjectScene", subjectScene, System.out);
+//		Bindings.select(subjectScene, "window", "focused").addListener(focusListener);
 	}
 	
 	public ReadOnlyObjectProperty<Node> focusedNodeProperty() {

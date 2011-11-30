@@ -1,20 +1,15 @@
 package org.fxsct.locator;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.StrokeType;
-import javafx.stage.Window;
 
 
 class NodeLocator {
@@ -31,8 +26,6 @@ class NodeLocator {
 	private final DoubleProperty fillOpacity = new SimpleDoubleProperty(0.2);
 
 	private final ObjectProperty<Node> subjectNode = new SimpleObjectProperty<Node>();
-	private final ObjectBinding<Scene> subjectScene = Bindings.select(subjectNode, "scene");
-	private final ObjectBinding<Window> subjectWindow = Bindings.select(subjectScene, "window");
 	private final BoundsInfo bounds = new BoundsInfo() {{
 		subjectNodeProperty().bind(subjectNode);
 	}};

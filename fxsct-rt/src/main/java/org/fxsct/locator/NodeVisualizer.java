@@ -99,6 +99,7 @@ public class NodeVisualizer {
 			strokePaintProperty().set(Color.BLUE);
 			subjectNodeProperty().set(n);
 			this.fillOpacityProperty().bind(opacity);
+			
 		}};
 		childLocators.add(index, loc);
 		childGroup.getChildren().add(index, loc.getContent());

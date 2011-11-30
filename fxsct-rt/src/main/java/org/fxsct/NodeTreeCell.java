@@ -5,6 +5,7 @@
 package org.fxsct;
 
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TreeCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -31,7 +32,10 @@ public class NodeTreeCell extends TreeCell<Node> {
     protected void updateItem(Node t, boolean empty) {
         super.updateItem(t, empty);
         if (!empty && t != null) {
-            javaClass.setText(NodeInfo.getClassName(t));
+        	String childCount = "";
+        	if (t instanceof Parent)
+        		childCount = String.format(" (%d)", ((Parent)t).getChildrenUnmodifiable().size());
+            javaClass.setText(NodeInfo.getClassName(t) + childCount);
             if (t.getId() != null && !t.getId().isEmpty())
                 cssId.setText("#" + t.getId() + " ");
             else
