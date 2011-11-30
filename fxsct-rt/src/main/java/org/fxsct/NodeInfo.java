@@ -238,7 +238,7 @@ class NodeInfo {
                     Object o = m.invoke(n);
                     if (o instanceof ObservableValue){
                     	ObservableValue<?> obsVal = (ObservableValue<?>)o;
-                    	if (!(obsVal.getValue() instanceof Node && !blacklistProperties.contains(prop))) {
+                    	if (!(obsVal.getValue() instanceof Node) && !blacklistProperties.contains(prop)) {
                             props.put(prop, (ObservableValue<?>)o);
                     	}
                     }
