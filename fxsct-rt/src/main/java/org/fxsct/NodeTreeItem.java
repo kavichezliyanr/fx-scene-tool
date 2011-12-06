@@ -62,8 +62,8 @@ class NodeTreeItem extends TreeItem<Node> {
 	private List<TreeItem<Node>> buildChildren() {
 		ArrayList<TreeItem<Node>> newKids = new ArrayList<TreeItem<Node>>();
 		for (Node n : ((Parent) getValue()).getChildrenUnmodifiable()) {
-			System.out.println("buildChildren() "
-					+ NodeInfo.getBreadCrumbString(n));
+//			System.out.println("buildChildren() "
+//					+ NodeInfo.getBreadCrumbString(n));
 			newKids.add(new NodeTreeItem(n));
 		}
 		return newKids;
@@ -81,9 +81,8 @@ class NodeTreeItem extends TreeItem<Node> {
 					int absIndex = change.getFrom() + i;
 //					((NodeTreeItem) (children.get(absIndex))).disposeAll();
 					Node n = change.getAddedSubList().get(i);
-					System.out
-							.println("initChildren/onChanged(): Replacing node "
-									+ NodeInfo.getBreadCrumbString(n));
+//					System.out.println("initChildren/onChanged(): Replacing node "
+//									+ NodeInfo.getBreadCrumbString(n));
 					NodeTreeItem oldItem = (NodeTreeItem) children.set(absIndex, new NodeTreeItem(n));
 					oldItem.disposeAll();
 				}
@@ -91,9 +90,9 @@ class NodeTreeItem extends TreeItem<Node> {
 					for (int i = replaceSize; i < change.getAddedSize(); i++) {
 						int absIndex = change.getFrom() + i;
 						Node n = change.getAddedSubList().get(i);
-						System.out
-								.println("initChildren/onChanged(): Adding node "
-										+ NodeInfo.getBreadCrumbString(n));
+//						System.out
+//								.println("initChildren/onChanged(): Adding node "
+//										+ NodeInfo.getBreadCrumbString(n));
 						children.add(absIndex, new NodeTreeItem(n));
 					}
 				} else if (change.getRemovedSize() > replaceSize) {
@@ -143,7 +142,7 @@ class NodeTreeItem extends TreeItem<Node> {
 			Parent me = (Parent) getValue();
 			me.getChildrenUnmodifiable().removeListener(nodeChangeListener);
 //			disposeChildren();
-			System.out.println("dispose() "	+ NodeInfo.getBreadCrumbString(getValue()));
+//			System.out.println("dispose() "	+ NodeInfo.getBreadCrumbString(getValue()));
 			super.getChildren().clear();
 		}
 		hasInitializedChildren = false;

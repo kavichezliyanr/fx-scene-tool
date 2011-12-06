@@ -88,8 +88,7 @@ public class NodeTracker {
 
 			@Override
 			public void handle(MouseEvent ev) {
-				Node n = locateChildAt(subjectStage.get().getScene().getRoot(), ev.getSceneX() - trackArea.getX(), ev.getSceneY() - trackArea.getY());
-//				System.out.println(String.format("NodeTracker node: [%f,%f] %s", ev.getSceneX(), ev.getSceneY(), NodeInfo.toString(n)));
+				Node n = locateChildAt(subjectStage.get().getScene().getRoot(), ev.getX() - trackArea.getX(), ev.getY() - trackArea.getY());
 				if (n != null)
 				node.set(n);
 			}
