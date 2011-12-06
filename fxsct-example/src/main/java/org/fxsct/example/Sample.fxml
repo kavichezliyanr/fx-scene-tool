@@ -6,32 +6,48 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxsct.example.Sample">
-    <children>
-     	<Label fx:id="topLabel" text="topLabel" />
-        <AnchorPane>
-            <children>
-                <HBox spacing="10" layoutX="80" layoutY="40">
-            
-                    <children>
-                        <TextField fx:id="label2" text="Label2" />
-                        <Label fx:id="label3" text="Label3" translateY="-10"/>
-                        <Label fx:id="label4" text="Label4" />
-                        <VBox spacing="10" scaleX="2.0" scaleY="2.0">
-                            <children>
-                                <Label fx:id="label5" text="Label5" />
-                                <Text fx:id="text6" text="t6" />
-                                <Label fx:id="label7" text="Label7" />
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Button id="button" layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-                <Label id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" prefHeight="16" prefWidth="69" fx:id="label" >
-                    <AnchorPane.bottomAnchor>30</AnchorPane.bottomAnchor>    
-                </Label>
-            </children>
-        </AnchorPane>
-     	<TextField fx:id="bottomLabel" text="bottomLabel" />
-    </children>
-</VBox>
+<BorderPane id="border-pane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="org.fxsct.example.Sample">
+	<center>
+		<StackPane>
+		    <children>
+		     	<Label fx:id="topLabel" text="topLabel" />
+		        <AnchorPane>
+		            <children>
+		                <HBox spacing="10" layoutX="80" layoutY="40">
+		            
+		                    <children>
+		                        <TextField fx:id="label2" text="Label2" />
+		                        <Label fx:id="label3" text="Label3" translateY="-10"/>
+		                        <Label fx:id="label4" text="Label4" />
+		                        <VBox fx:id="nodeHolder" spacing="10" scaleX="2.0" scaleY="2.0">
+		                            <children>
+		                                <Label fx:id="label5" text="Label5" />
+		                                <Text fx:id="text6" text="t6" />
+		                                <Label fx:id="label7" text="Label7" />
+		                            </children>
+		                        </VBox>
+		                    </children>
+		                </HBox>
+		                <Button id="button" layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
+		                <Label id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" prefHeight="16" prefWidth="69" fx:id="label" >
+		                    <AnchorPane.bottomAnchor>30</AnchorPane.bottomAnchor>    
+		                </Label>
+		            </children>
+		        </AnchorPane>
+		     	
+		    </children>
+	    </StackPane>
+    </center>
+    <bottom>
+	 	<HBox>
+	 		<children>
+	 			<Button fx:id="addNodeButton" text="Add Node" onAction="#addNode" />
+	 			<Button fx:id="removeNodeButton" text="Remove Node" onAction="#removeNode" />
+	 			<Button fx:id="replaceNodeButton" text="Replace Node" onAction="#replaceNode" />
+	 			<Button fx:id="resetNodesButton" text="Reset Nodes" onAction="#resetNodes" />
+	 			<Button fx:id="clearNodesButton" text="Clear Nodes" onAction="#clearNodes" />
+	 		</children>
+	 	</HBox>
+    </bottom>
+    
+</BorderPane>

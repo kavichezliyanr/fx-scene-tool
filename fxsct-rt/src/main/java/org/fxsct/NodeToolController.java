@@ -4,8 +4,6 @@
  */
 package org.fxsct;
 
-import static javafx.beans.binding.Bindings.when;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -14,9 +12,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -135,9 +131,9 @@ public class NodeToolController extends Controller implements Initializable {
 
             public void invalidated(Observable o) {
                 if (stages.isEmpty()) {
-                    nodeBrowser.subjectStageProperty().set(null);
+                	nodeBrowser.setRootNode(null);
                 } else {
-                    nodeBrowser.subjectStageProperty().set(stages.get(0));
+                	nodeBrowser.setRootNode(stages.get(0).getScene().getRoot());
                     subjectWindow.set(stages.get(0));
                 }
             }
