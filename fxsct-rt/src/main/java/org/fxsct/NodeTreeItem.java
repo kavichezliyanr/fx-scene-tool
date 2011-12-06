@@ -79,12 +79,13 @@ class NodeTreeItem extends TreeItem<Node> {
 						change.getRemovedSize());
 				for (int i = 0; i < replaceSize; i++) {
 					int absIndex = change.getFrom() + i;
-					((NodeTreeItem) (children.get(absIndex))).dispose();
+//					((NodeTreeItem) (children.get(absIndex))).disposeAll();
 					Node n = change.getAddedSubList().get(i);
 					System.out
 							.println("initChildren/onChanged(): Replacing node "
 									+ NodeInfo.getBreadCrumbString(n));
-					children.set(absIndex, new NodeTreeItem(n));
+					NodeTreeItem oldItem = (NodeTreeItem) children.set(absIndex, new NodeTreeItem(n));
+					oldItem.disposeAll();
 				}
 				if (change.getAddedSize() > replaceSize) {
 					for (int i = replaceSize; i < change.getAddedSize(); i++) {
@@ -99,12 +100,15 @@ class NodeTreeItem extends TreeItem<Node> {
 					int startIndex = change.getFrom() + replaceSize;
 					int removeSize = change.getRemovedSize() - replaceSize;
 					try {
-						List<TreeItem<Node>> removedItems = children.subList(
-								startIndex, startIndex + removeSize);
+						List<TreeItem<Node>> removedItems = new ArrayList<TreeItem<Node>>(children.subList(
+								startIndex, startIndex + removeSize));
+						if (removedItems.size() == children.size())
+							children.clear();
+						else
+							children.removeAll(removedItems);
 						for (TreeItem<Node> item : removedItems) {
-							((NodeTreeItem) item).dispose();
+							((NodeTreeItem) item).disposeAll();
 						}
-						children.removeAll(removedItems);
 					} catch (IndexOutOfBoundsException ex) {
 						System.out.println(String.format("NodeTreeItem Error: Tried to remove children from %d to %d but the list only had %d items", startIndex, removeSize, children.size()));
 					}
@@ -120,6 +124,11 @@ class NodeTreeItem extends TreeItem<Node> {
 			super.getChildren().setAll(buildChildren());
 			me.getChildrenUnmodifiable().addListener(nodeChangeListener);
 		}
+	}
+	
+	private void disposeAll() {
+		disposeChildren();
+		dispose();
 	}
 	
 	private void disposeChildren() {
